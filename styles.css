@@ -1,0 +1,118 @@
+body {
+    font-family: 'Great Vibes', cursive;
+    text-align: center;
+    margin: 0;
+    background: linear-gradient(to bottom, #ffe6e9, #ffb3ba); /* Smooth gradient with soft pink tones */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    padding: 30px;
+    color: #e91e63;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 48px;
+    color: #ff4d6d;
+    margin-bottom: 20px;
+    animation: none; /* Ensure no animation applies */
+    position: static; /* Prevent unintended movement */
+}
+
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    font-size: 22px;
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    background-color: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff6e81;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+#no-btn {
+    position: relative;
+    animation: shake 0.8s infinite; /* Makes the No button slightly wiggle */
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10px);
+    }
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+.popup {
+    display: none;
+    background-color: #fff;
+    border: 3px solid #ff4d6d;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    font-family: 'Dancing Script', cursive;
+    font-size: 26px;
+    color: #ff4d6d;
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.hearts {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.heart {
+    font-size: 50px;
+    margin: 0 10px;
+    color: #ff4d6d;
+    animation: heartbeat 1.5s infinite ease-in-out;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}

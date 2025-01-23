@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+        body {
+            font-family: 'Great Vibes', cursive;
+            text-align: center;
+            margin: 0;
+            background: linear-gradient(to bottom, #ffe6e9, #ffc1cc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 500px;
+            height: auto;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background: #ffebee;
+            border: 4px solid #e91e63;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.5s ease-in-out;
+            cursor: pointer;
+        }
+
+        .envelope:hover {
+            transform: translateY(-15px);
+        }
+
+        .envelope .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #e91e63;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .envelope:hover .flap {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+            background: #fff;
+            border: 4px solid #e91e63;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            padding: 20px;
+        }
+
+        .envelope:hover .message {
+            opacity: 1;
+        }
+
+        .message h1 {
+            font-size: 42px;
+            color: #e91e63;
+            margin: 0;
+        }
+
+        .message p {
+            font-size: 24px;
+            color: #555;
+            margin: 15px 0 0;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .hearts {
+            margin-top: 20px;
+        }
+
+        .heart {
+            font-size: 34px;
+            color: #e91e63;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.4);
+            }
+        }
+
+        .form-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .form-container input,
+        .form-container textarea,
+        .form-container button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            background-color: #e91e63;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #d81b60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="message">
+                <h1>You Said Yes! ❤️</h1>
+                <p>I can’t wait to spend more beautiful moments with you.</p>
+                <p>Thank you for being the light of my life classmates!</p>
+                <div class="hearts">
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h2>Send Your Response</h2>
+            <form id="contact-form">
+                <input type="text" name="to_name" placeholder="Recipient's Name" required>
+                <input type="text" name="from_name" placeholder="Your Name" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="love-song" src="audio/Nightcore - Somebody To You (The Vamps ft. Demi Lovato) - Switching Vocals.mp3" autoplay loop></audio>
+
+    <script>
+        // Initialize EmailJS with your Public Key
+        emailjs.init("cfywRNllt09-svHIQ"); // Replace with your EmailJS public key
+
+        const form = document.getElementById("contact-form");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const serviceID = "service_raax5df"; // Replace with your EmailJS service ID
+            const templateID = "template_pl5rsql"; // Replace with your EmailJS template ID
+
+            const formData = new FormData(form);
+            const templateParams = {
+                to_name: formData.get("to_name"),
+                from_name: formData.get("from_name"),
+                message: formData.get("message"),
+            };
+
+            emailjs
+                .send(serviceID, templateID, templateParams)
+                .then(
+                    function (response) {
+                        alert("Message sent successfully!");
+                        form.reset(); // Clear the form
+                    },
+                    function (error) {
+                        alert("Failed to send message: " + JSON.stringify(error));
+                    }
+                );
+        });
+    </script>
+</body>
+</html>
